@@ -1,0 +1,6 @@
+/buildSrc/.gradle/
+/buildSrc/build/
+/build/
+/backend-starter-api/build/
+/backend-starter-service/build/
+/.gradle/

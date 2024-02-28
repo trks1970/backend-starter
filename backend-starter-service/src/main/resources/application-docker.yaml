@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://database:1433;database=master;encrypt=false;
+
+  rabbitmq:
+    host: rabbitmq
+
+gelf:
+  udp:
+    host: seq-input-gelf-udp
+    port: 12201
+

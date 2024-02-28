@@ -1,0 +1,104 @@
+# see: https://docs.gradle.org/current/userguide/platforms.html#sub:conventional-dependencies-toml
+[versions]
+jdkVersion = "21"
+# IMPLEMENTATION
+jackson = "2.16.1"
+jacksonJsonNullable = "0.2.4"
+jsr305 = "3.0.2"
+logBook = "3.5.0"
+
+mysql = "8.3.0"
+postgres = "42.6.0"
+spring = "3.2.3"
+springDoc = "2.2.0"
+
+# ANNOTATION PROCESSORS
+jpaModelGen = "6.4.4.Final"
+lombok = "1.18.30"
+mapstruct = "1.5.5.Final"
+
+
+# TEST
+archUnit = "1.2.1"
+assertJ = "3.25.3"
+databaseRider ="1.41.0"
+h2 = "2.2.220"
+mockWebServer = "4.11.0"
+testContainers = "1.19.0"
+
+# PLUGINS
+openApiGenerator = "7.3.0"
+jacoco = "0.8.11"
+jib = "3.4.0"
+ktfmt = "0.43"
+sonar = "4.3.1.3277"
+spotless = "6.19.0"
+versions = "0.45.0"
+
+
+[libraries]
+# IMPLEMENTATION
+
+jacksonDatatype = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref="jackson"}
+jacksonJsonNullable = { module = "org.openapitools:jackson-databind-nullable", version.ref="jacksonJsonNullable"}
+jsr305 ={ module = "com.google.code.findbugs:jsr305", version.ref="jsr305"}
+liquibase = {module="org.liquibase:liquibase-core", version=""}
+logBook = {module="org.zalando:logbook-spring-boot-starter", version.ref="logBook"}
+
+microMeterPrometheus = { module = "io.micrometer:micrometer-registry-prometheus", version = "" }
+microMeterTracing = { module = "io.micrometer:micrometer-tracing", version = "" }
+microMeterTracingOtel = { module = "io.micrometer:micrometer-tracing-bridge-otel", version = "" }
+mysql = {module="com.mysql:mysql-connector-j", version="8.3.0"}
+postgres = {module="org.postgresql:postgresql", version.ref ="postgres"}
+springDoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref="springDoc"}
+springBootActuator = {module = "org.springframework.boot:spring-boot-starter-actuator", version = ""}
+springBootDataJpa = {module = "org.springframework.boot:spring-boot-starter-data-jpa", version = ""}
+springBootOauth2ResourceServer = {module = "org.springframework.boot:spring-boot-starter-oauth2-resource-server", version = ""}
+springBootSecurity = {module = "org.springframework.boot:spring-boot-starter-security", version = ""}
+springDataEnvers = {module = "org.springframework.data:spring-data-envers", version = ""}
+springOAuth2Client = {module = "org.springframework.security:spring-security-oauth2-client", version = ""}
+springBootValidation = { module = "org.springframework.boot:spring-boot-starter-validation", version= ""}
+springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", version = "" }
+
+# ANNOTATION PROCESSORS
+jpaModelGen = {module="org.hibernate.orm:hibernate-jpamodelgen", version.ref="jpaModelGen"}
+lombok = { module = "org.projectlombok:lombok", version.ref="lombok" }
+mapstruct = {module="org.mapstruct:mapstruct", version.ref="mapstruct"}
+
+# TEST
+archUnit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archUnit" }
+assertJ = { module = "org.assertj:assertj-core", version.ref="assertJ"}
+
+databaseRider = {module="com.github.database-rider:rider-spring", version.ref="databaseRider"}
+h2 = { module="com.h2database:h2", version.ref="h2" }
+mockWebServer = {module="com.squareup.okhttp3:mockwebserver", version.ref="mockWebServer"}
+springBootTest = { module = "org.springframework.boot:spring-boot-starter-test", version = "" }
+springSecurityTest = { module="org.springframework.security:spring-security-test", version=""}
+testContainers = {module="org.testcontainers:junit-jupiter", version.ref="testContainers"}
+
+# buildSrc dependencies (plugins)
+springBoot-gradle = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring" }
+
+[bundles]
+# IMPLEMENTATION
+databaseBundle = ["postgres", "liquibase"]
+springApiBundle = [ "jacksonDatatype", "jacksonJsonNullable", "jsr305","springBootWeb", "springBootValidation", "springDoc"]
+springSecurityBundle = ["springBootOauth2ResourceServer", "springBootSecurity", "springOAuth2Client"]
+springServiceBundle = ["springBootActuator", "springBootDataJpa", "springDataEnvers"]
+springTelemetryBundle = ["logBook","microMeterPrometheus","microMeterTracing","microMeterTracingOtel"]
+
+# ANNOTATION PROCESSORS
+annotationProcessorBundle = ["lombok", "jpaModelGen", "mapstruct"]
+
+# TEST
+testBundle = ["archUnit", "assertJ", "springBootTest"]
+integrationTestBundle = ["databaseRider", "h2", "mockWebServer", "springSecurityTest"]
+
+[plugins]
+
+openApiGenerator = { id = "org.openapi.generator", version.ref = "openApiGenerator"}
+jib = { id = "com.google.cloud.tools.jib", version.ref = "jib"}
+sonarqube = {id="org.sonarqube", version.ref = "sonar"}
+spotless = {id = "com.diffplug.spotless", version.ref = "spotless"}
+springBoot = { id = "org.springframework.boot", version.ref = "spring"}
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }

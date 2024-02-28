@@ -1,0 +1,107 @@
+import org.gradle.kotlin.dsl.apply
+import org.gradle.kotlin.dsl.repositories
+import org.gradle.kotlin.dsl.version
+
+plugins {
+    id("java") apply(true)
+    id("org.springframework.boot") version "3.2.2" apply(false)
+    id("io.spring.dependency-management") version "1.1.4" apply(false)
+    id("com.diffplug.spotless") version "6.19.0"
+    if( System.getenv("TF_BUILD") != "True") {
+        id("org.sonarqube") version "4.3.1.3277" apply(false)
+    }
+    jacoco
+}
+
+group = "de.lcag.jbox"
+version = "${project.properties["release"]}-${System.getenv()["COMMIT_SLUG"]?:"local"}"
+
+
+configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    java {
+        target("src/*/java/**/*.kt")
+        googleJavaFormat()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+    kotlinGradle {
+        target("$projectDir/*.gradle.kts") // default target for kotlinGradle
+        ktfmt("${project.extra["ktfmt"]}")
+            .googleStyle()
+            .configure { options -> run {
+                options.setRemoveUnusedImport(true)
+            }
+            }
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+tasks.withType<JavaCompile> {
+    targetCompatibility = "${project.extra["javaVersion"]}"
+    options.compilerArgs = listOf("-Xlint:deprecation", "-Xlint:unchecked")
+}
+
+tasks.withType<Test> {
+    testLogging.showStandardStreams = true
+    useJUnitPlatform()
+    jvmArgs(
+        "-XX:+EnableDynamicAgentLoading",
+    )
+}
+
+// Jar--
+tasks.withType<Jar> {
+    archiveBaseName.set(project.name)
+    archiveVersion.set("${project.version}")
+    archiveClassifier.set("")
+    enabled = true
+}
+// --Jar
+
+// --SpringBoot
+tasks.withType<BootRun> {
+    mainClass.set("${project.extra["appMainClass"]}")
+}
+tasks.withType<BootJar> {
+    onlyIf {
+        project.name.endsWith("-service")
+    }
+    archiveClassifier.set("boot")
+}
+// --SpringBoot
+
+
+// JaCoCo--
+jacoco {
+    toolVersion = "${project.extra["jacoco"]}"
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+    }
+}
+tasks.test {
+    testLogging.showStandardStreams = true
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+// -- JaCoCo
+
+// Sonar --
+// see: https://community.sonarsource.com/t/unresolved-s-types-have-been-detected-during-analysis/43321
+if( System.getenv("TF_BUILD") != "True") {
+    project.extensions.getByType(SonarExtension::class).properties {
+        property("sonar.host.url", "http://localhost:9000")
+        property("sonar.login", "admin")
+        property("sonar.coverage.exclusions", "**/*Entity.kt")
+        // you have to set this manually in your local sonar
+        property("sonar.password", "changeme")
+    }
+    tasks.getByName("sonar").dependsOn(tasks.test)
+}
+// --Sonar
+

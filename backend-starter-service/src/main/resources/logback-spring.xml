@@ -1,0 +1,76 @@
+
+<configuration>
+    <springProperty name="gelfUdpHost" source="gelf.udp.host"/>
+    <springProperty name="gelfUdpPort" source="gelf.udp.port"/>
+    <timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date - %-5level - [%thread] %c{2} - %message%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file> eb-${byDay}.log </file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date - %-5level - [%thread] %c{2} - %message%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="UDP_GELF" class="de.siegmar.logbackgelf.GelfUdpAppender">
+        <graylogHost>${gelfUdpHost}</graylogHost>
+        <graylogPort>${gelfUdpPort}</graylogPort>
+        <maxChunkSize>508</maxChunkSize>
+        <useCompression>true</useCompression>
+        <messageIdSupplier class="de.siegmar.logbackgelf.MessageIdSupplier"/>
+        <encoder class="de.siegmar.logbackgelf.GelfEncoder">
+            <includeMarker>true</includeMarker>
+            <includeMdcData>true</includeMdcData>
+            <includeRootCauseData>true</includeRootCauseData>
+            <includeLevelName>true</includeLevelName>
+            <shortPatternLayout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>[eb-service] %-5level - [%thread] %c{2} - %m%n</pattern>
+            </shortPatternLayout>
+            <numbersAsString>false</numbersAsString>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <springProfile name="default">
+        <root level="WARN">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+            <appender-ref ref="UDP_GELF" />
+        </root>
+        <logger name="com.tkrt.eborze" level="DEBUG"/>
+        <logger name="liquibase" level="INFO"/>
+    </springProfile>
+
+    <springProfile name="docker">
+        <root level="WARN">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="UDP_GELF" />
+        </root>
+        <logger name="com.tkrt.eborze" level="DEBUG"/>
+        <logger name="liquibase" level="INFO"/>
+    </springProfile>
+
+    <springProfile name="prod">
+        <root level="WARN">
+            <appender-ref ref="UDP_GELF" />
+        </root>
+        <logger name="com.tkrt.eborze" level="WARN"/>
+    </springProfile>
+
+</configuration>
+
+

@@ -1,0 +1,355 @@
+server:
+  ssl:
+    key-store: classpath:tkrt.p12
+    key-store-password: password
+    key-store-type: pkcs12
+    key-alias: TKRT Root
+    key-password: password
+  port: 8443
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
+
+spring:
+  application:
+    name: eb-service
+  main:
+    lazy-initialization: false
+
+  datasource:
+    url: jdbc:sqlserver://127.0.0.1:1433;database=master;encrypt=false;
+    username: sa
+    password: Password.1
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari:
+      auto-commit: false
+
+  liquibase:
+    change-log: /db/changelog.sql
+
+  jpa:
+    open-in-view: false
+    properties:
+      '[jakarta.persistence.schema-generation.database.action]': validate # possible values of: none, create, drop, drop-and-create
+      '[jakarta.persistence.schema-generation.scripts.action]': none # possible values of: none, create, drop, drop-and-create
+      '[jakarta.persistence.schema-generation.scripts.create-target]': create.sql
+      '[jakarta.persistence.schema-generation.scripts.drop-target]': drop.sql
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        integration:
+          envers:
+            enabled: true
+
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+    forecast:
+      forecastExchange: e.forecast.forecast
+      forecastRoutingKey: q.forecast.forecast
+      calculatedQueue: q.forecast.calculated
+    train:
+      trainExchange: e.forecast.train
+      trainRoutingKey: q.forecast.train
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+      write-date-timestamps-as-nanoseconds: false
+
+openapi:
+  ebApi:
+    basePath: /api
+
+security-token: securityToken=7d244162-1ef0-4abb-b6e8-717e8d4d7609
+transparency-data-consumer:
+  url-address: https://web-api.tp.entsoe.eu/api?
+
+mavir-data-consumer:
+  url-address: https://www.mavir.hu/rtdwweb/webuser/chart/
+
+gelf:
+  udp:
+    host: 127.0.0.1
+    port: 12201
+
+transparency:
+  types:
+#    - name: 6.1.a Actual Total Load Forecast
+#      id: ACTUAL_TOTAL_LOAD
+#      document: generationLoadMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15 # invoke every 15 minutes
+#      from: -15 # minutes from NOW
+#      to: 0 # minutes from NOW
+#      params:
+#        documentType: A65
+#        processType: A16
+#        outBiddingZone_Domain: 10YHU-MAVIR----U
+#    - name: 6.1.b Day-ahead Total Load Forecast
+#      id: DAY_AHEAD_TOTAL_LOAD
+#      document: generationLoadMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15
+#      from: -15
+#      to: 0
+#      params:
+#        documentType: A65
+#        processType: A01
+#        outBiddingZone_Domain: 10YHU-MAVIR----U
+#    - name: 12.3.a Current Balancing State
+#      id: CURRENT_BALANCING_STATE
+#      document: balancingMarketDocument41
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 1
+#      from: -1441 #-16
+#      to: -1 #-15
+#      params:
+#        documentType: A86
+#        businessType: B33
+#        area_Domain: 10YHU-MAVIR----U
+#    - name: 14.1.c Day-ahead aggregated generation
+#      id: DAY_AHEAD_AGGREGATED_GENERATION
+#      document: generationLoadMarketDocument
+#      round: HOURS
+#      delayMinutes: 0
+#      atUtc: '18:00'
+#      from: -2040
+#      to: -600
+#      params:
+#        documentType: A71
+#        processType: A01
+#        in_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 14.1.d Day-ahead generation forecast
+#      id: DAY_AHEAD_GENERATION
+#      document: generationLoadMarketDocument
+#      round: HOURS
+#      delayMinutes: 0
+#      atUtc: '18:00'
+#      from: -2040
+#      to: -600
+#      params:
+#        documentType: A69
+#        processType: A01
+#        in_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 14.1.d Current generation forecast
+#      id: CURRENT_GENERATION
+#      document: generationLoadMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15
+#      from: -15
+#      to: 0
+#      params:
+#        documentType: A69
+#        processType: A18
+#        in_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 14.1.d Intra-day generation forecast
+#      id: INTRA_DAY_GENERATION
+#      document: generationLoadMarketDocument
+#      round: HOURS
+#      delayMinutes: 0
+#      atUtc: '18:00'
+#      from: -2040
+#      to: -600
+#      params:
+#        documentType: A69
+#        processType: A40
+#        in_Domain: 10YHU-MAVIR----U
+#      #    -
+#      # transparency 15.1.a&b,  Unavailability Of Generation Units
+#    #      meta:
+#    #        document: generationLoadMarketDocument
+#    #      params:
+#    #        documentType: A80
+#    #        biddingZone_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 16.1.b&c Aggregated Generation per Type
+#      id: AGGREGATED_GENERATION_PER_TYPE
+#      document: generationLoadMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15
+#      from: -75
+#      to: -60
+#      params:
+#        documentType: A75
+#        processType: A16
+#        in_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 17.1.e Activated Balancing Energy
+#      id: ACTIVATED_BALANCING_ENERGY
+#      document: balancingMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15
+#      from: -75
+#      to: -60
+#      params:
+#        documentType: A83
+#        controlArea_Domain: 10YHU-MAVIR----U
+#    -
+#      name: 17.1.h Total Imbalance Volume
+#      id: TOTAL_IMBALANCE_VOLUME
+#      document: balancingMarketDocument
+#      round: MINUTES
+#      delayMinutes: 0
+#      frequency: 15
+#      from: -45
+#      to: -30
+#      params:
+#        documentType: A86
+#        controlArea_Domain: 10YHU-MAVIR----U
+mavir:
+  types:
+    -
+      name: activation
+      id: MAVIR_ACTIVATION
+      document: 11326
+      round: MINUTES
+      delayMinutes: 4
+      frequency: 15
+      from: -15
+      to: 0
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    - name: activation_watchdog
+      id: MAVIR_ACTIVATION_WATCH
+      document: 11326
+      round: MINUTES
+      delayMinutes: 1
+      frequency: 360
+      from: -360
+      to: 0
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    -
+      name: generationload
+      id: MAVIR_GENERATION_LOAD
+      document: 7678
+      round: MINUTES
+      delayMinutes: 0
+      frequency: 5
+      from: -6
+      to: 174
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 1
+    - name: generationload_watchdog
+      id: MAVIR_GENERATION_LOAD_WATCH
+      document: 7678
+      round: MINUTES
+      delayMinutes: 1
+      frequency: 360
+      from: -361
+      to: -1
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 1
+    -
+      name: generationload15min
+      id: MAVIR_GENERATION_LOAD_15MIN
+      document: 7678
+      round: MINUTES
+      delayMinutes: 4
+      frequency: 15
+      from: -15
+      to: 180
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    - name: generationload15min_watchdog
+      id: MAVIR_GENERATION_LOAD_15MIN_WATCH
+      document: 7678
+      round: MINUTES
+      delayMinutes: 1
+      frequency: 360
+      from: -360
+      to: 0
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    -
+      name: pvactfct
+      id: MAVIR_PV_ACT_FCT
+      document: 11838
+      round: MINUTES
+      delayMinutes: 3
+      frequency: 15
+      from: -15
+      to: 180
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    - name: pvactfct_watchdog
+      id: MAVIR_PV_ACT_FCT_WATCH
+      document: 11838
+      round: MINUTES
+      delayMinutes: 0
+      frequency: 360
+      from: -360
+      to: 0
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    -
+      name: windactfct
+      id: MAVIR_WIND_ACT_FCT
+      document: 11840
+      round: MINUTES
+      delayMinutes: 3
+      frequency: 15
+      from: -15
+      to: 180
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+    -
+      name: windactfct_watchdog
+      id: MAVIR_WIND_ACT_FCT_WATCH
+      document: 11840
+      round: MINUTES
+      delayMinutes: 0
+      frequency: 360
+      from: -360
+      to: 0
+      params:
+        exportType: xlsx
+        periodType: min
+        period: 15
+
+forecast:
+  types:
+    - name: forecast
+      id: FORECAST
+      command: FORECAST
+      round: MINUTES
+      delayMinutes: 6
+      frequency: 15
+    - name: train
+      id: TRAIN
+      command: TRAIN
+      round: MINUTES
+      delayMinutes: 0
+      frequency: 525600
