@@ -3,6 +3,7 @@ val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().name
 plugins {
     `java-library`
     checkstyle
+    jacoco
     id("com.diffplug.spotless")
 }
 
@@ -62,10 +63,26 @@ tasks.compileJava {
 tasks.withType<Test> {
     testLogging.showStandardStreams = true
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
     jvmArgs(
         "-XX:+EnableDynamicAgentLoading",
     )
 }
+
+// JaCoCo--
+jacoco {
+    toolVersion = libs.findVersion("jacoco").get().toString()
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+    }
+}
+// -- JaCoCo
+
 
 tasks.jar {
     manifest {
