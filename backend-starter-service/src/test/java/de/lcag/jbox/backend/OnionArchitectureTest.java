@@ -31,7 +31,6 @@ public class OnionArchitectureTest {
           .domainServices(ROOT_PACKAGE + ".domain.service..", ROOT_PACKAGE + ".domain.repository..")
           .applicationServices(ROOT_PACKAGE + ".config..")
           .adapter("infrastructure", ROOT_PACKAGE + ".infrastructure..")
-          .adapter("mq", ROOT_PACKAGE + ".mq..")
           .adapter("api", ROOT_PACKAGE + ".api..");
 
   @ArchTest
@@ -82,6 +81,7 @@ public class OnionArchitectureTest {
   static final ArchRule layerInfrastructureIsConsistent =
       layeredArchitecture()
           .consideringAllDependencies()
+          .withOptionalLayers(true)
           .layer("entity")
           .definedBy(ROOT_PACKAGE + ".infrastructure.entity..")
           .layer("repository")
@@ -91,7 +91,7 @@ public class OnionArchitectureTest {
           .whereLayer("entity")
           .mayOnlyBeAccessedByLayers("repository", "mapper")
           .whereLayer("mapper")
-          .mayOnlyBeAccessedByLayers("repository", "mq")
+          .mayOnlyBeAccessedByLayers("repository")
           .whereLayer("repository")
           .mayNotBeAccessedByAnyLayer();
 

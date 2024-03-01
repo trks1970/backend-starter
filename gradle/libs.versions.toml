@@ -32,7 +32,7 @@ jacoco = "0.8.11"
 jib = "3.4.0"
 ktfmt = "0.43"
 sonar = "4.3.1.3277"
-spotless = "6.19.0"
+spotless = "6.25.0"
 versions = "0.45.0"
 
 
@@ -78,6 +78,7 @@ testContainers = {module="org.testcontainers:junit-jupiter", version.ref="testCo
 
 # buildSrc dependencies (plugins)
 springBoot-gradle = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring" }
+spotless-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
 
 [bundles]
 # IMPLEMENTATION

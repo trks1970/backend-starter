@@ -33,13 +33,13 @@ components:
       type: object
       properties:
         major:
-          type: number
+          type: integer
           format: int32
         minor:
-          type: number
+          type: integer
           format: int32
         patch:
-            type: number
+            type: integer
             format: int32
         build:
             type: string

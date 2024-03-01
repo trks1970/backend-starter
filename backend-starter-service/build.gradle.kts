@@ -1,8 +1,6 @@
 plugins {
     id("spring-conventions")
 }
-
-
 dependencies {
 
     api(project(":backend-starter-api"))
@@ -10,6 +8,7 @@ dependencies {
     implementation(libs.bundles.springServiceBundle)
     implementation(libs.bundles.springSecurityBundle)
     implementation(libs.bundles.springTelemetryBundle)
+    implementation(libs.bundles.databaseBundle)
 
     compileOnly(libs.bundles.annotationProcessorBundle)
     annotationProcessor(libs.bundles.annotationProcessorBundle)

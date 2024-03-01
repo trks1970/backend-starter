@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  postgres:
+    container_name: backend-db
+    image: postgres:14 # https://hub.docker.com/_/postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: backend
+    volumes:
+      - backend-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  backend-data:

@@ -12,7 +12,7 @@
         <appender-ref ref="Console"/>
     </root>
 
-    <logger name="com.tkrt.eborze" level="DEBUG"/>
+    <logger name="de.lcag.jbox.backend" level="DEBUG"/>
 <!--
     <logger name="org.hibernate.SQL" level="TRACE" />
     <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />

@@ -17,6 +17,7 @@
  -->
 
 <module name="Checker">
+  <module name="JavadocPackage"/>
   <module name="SuppressWarningsFilter"/>
 
   <property name="charset" value="UTF-8"/>
