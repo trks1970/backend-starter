@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class VersionController implements VersionApi, InitializingBean {
   private final VersionMapper versionMapper;
+
   @Value("${spring.application.name}")
   private String applicationName;
 
@@ -25,15 +26,16 @@ public class VersionController implements VersionApi, InitializingBean {
 
   @Override
   public ResponseEntity<VersionResource> getVersion() {
-    return ResponseEntity.ok(
-        versionMapper.toVersion(applicationVersion)
-    );
+    return ResponseEntity.ok(versionMapper.toVersion(applicationVersion));
   }
 
   @Override
   public void afterPropertiesSet() {
     System.out.println("afterPropertiesSet " + applicationName + " " + applicationVersion);
-    log.info("Application {} version {} running on Java {}", applicationName, applicationVersion, System.getProperty("java.version"));
+    log.info(
+        "Application {} version {} running on Java {}",
+        applicationName,
+        applicationVersion,
+        System.getProperty("java.version"));
   }
-
 }

@@ -1,5 +1,4 @@
 import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("spring-conventions")
@@ -54,10 +53,6 @@ tasks.withType<JavaCompile> {
             "$buildDir/generated/src/main/java",
         )
     }
-}
-
-tasks.getByName<BootJar>("bootJar") {
-    enabled = false
 }
 
 dependencies {

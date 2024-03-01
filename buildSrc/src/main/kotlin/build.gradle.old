@@ -17,25 +17,6 @@ group = "de.lcag.jbox"
 version = "${project.properties["release"]}-${System.getenv()["COMMIT_SLUG"]?:"local"}"
 
 
-configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    java {
-        target("src/*/java/**/*.kt")
-        googleJavaFormat()
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
-    kotlinGradle {
-        target("$projectDir/*.gradle.kts") // default target for kotlinGradle
-        ktfmt("${project.extra["ktfmt"]}")
-            .googleStyle()
-            .configure { options -> run {
-                options.setRemoveUnusedImport(true)
-            }
-            }
-        trimTrailingWhitespace()
-        endWithNewline()
-    }
-}
 
 tasks.withType<JavaCompile> {
     targetCompatibility = "${project.extra["javaVersion"]}"

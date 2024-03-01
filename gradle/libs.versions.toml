@@ -28,6 +28,7 @@ testContainers = "1.19.0"
 
 # PLUGINS
 openApiGenerator = "7.3.0"
+checkstyle = "10.7.0"
 jacoco = "0.8.11"
 jib = "3.4.0"
 ktfmt = "0.43"

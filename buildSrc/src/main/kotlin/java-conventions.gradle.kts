@@ -2,6 +2,7 @@ val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().name
 
 plugins {
     `java-library`
+    checkstyle
     id("com.diffplug.spotless")
 }
 
@@ -12,9 +13,9 @@ java {
     }
 }
 
-configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+spotless {
     java {
-        target("src/*/java/**/*.kt")
+        target("src/*/java/**/*.java")
         googleJavaFormat()
         trimTrailingWhitespace()
         endWithNewline()
@@ -32,7 +33,20 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     }
 }
 
+tasks.checkstyleMain {
+    dependsOn(tasks.findByName("spotlessApply"))
+}
+
+checkstyle {
+    isIgnoreFailures = false
+    maxWarnings = 0
+    maxErrors = 0
+    // configFile = file("${rootProject.rootDir}/config/checkstyle/google_checks.xml")
+    toolVersion = libs.findVersion("checkstyle").get().toString()
+}
+
 tasks.compileJava {
+    //dependsOn(tasks.findByName("checkstyleMain"))
     // See: https://docs.oracle.com/en/java/javase/12/tools/javac.html
     @Suppress("SpellCheckingInspection")
     options.compilerArgs.addAll(
