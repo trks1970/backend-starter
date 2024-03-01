@@ -9,8 +9,10 @@ plugins {
 }
 
 tasks.processResources {
-    filesMatching("application.yml") {
-        expand(project.properties)
+    filesMatching("**/application.yaml") {
+        filter {
+            it.replace("@version@", project.version as String)
+        }
     }
 }
 
@@ -30,7 +32,6 @@ tasks.withType<BootJar> {
     archiveClassifier.set("boot")
 }
 // --SpringBoot
-
 
 
 dependencies {

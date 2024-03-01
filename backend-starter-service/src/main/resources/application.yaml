@@ -1,19 +1,19 @@
 server:
-  port: \${SERVER_PORT:8080}
-  max-http-request-header-size: \${SERVER_MAX_HEADER_SIZE:12KB}
+  port: ${SERVER_PORT:8080}
+  max-http-request-header-size: ${SERVER_MAX_HEADER_SIZE:12KB}
 
 spring:
   application:
     name: backend
-    version: ${version}
+    version: @version@
   main:
     lazy-initialization: false
   mvc:
     throw-exception-if-no-handler-found: true
   datasource:
-    url: jdbc:postgresql://\${POSTGRES_BASE_URL}:\${POSTGRES_PORT}/\${POSTGRES_DB}
-    username: \${DB_USER:admin}
-    password: \${DB_PASSWORD:admin123}
+    url: jdbc:postgresql://${POSTGRES_BASE_URL}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:admin123}
     driver-class-name: org.postgresql.Driver
     hikari:
       auto-commit: false
@@ -38,5 +38,5 @@ spring:
             enabled: true
 
 management:
-  server.port: \${ACTUATOR_PORT:8081}
+  server.port: ${ACTUATOR_PORT:8081}
   endpoints.web.exposure.include: health,prometheus,openapi,swagger-ui,info
