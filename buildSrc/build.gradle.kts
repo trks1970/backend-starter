@@ -22,4 +22,5 @@ dependencies {
     // and use the dependency management provided by spring-boot-dependencies
     add("implementation", libs.findLibrary("springBoot-gradle").get())
     add("implementation", libs.findLibrary("spotless-gradle").get())
+    add("implementation", libs.findLibrary("sonar-gradle").get())
 }
