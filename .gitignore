@@ -4,3 +4,4 @@
 /backend-starter-api/build/
 /backend-starter-service/build/
 /.gradle/
+/backend-starter-service/create.sql
