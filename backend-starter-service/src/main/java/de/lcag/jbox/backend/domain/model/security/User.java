@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.springframework.lang.Nullable;
 
-public record User(@Nullable UUID uuid, String username, Set<Role> roles) {
+public record User(@Nullable UUID uuid, String name, Set<Role> roles) {
 
   @Override
   public boolean equals(Object o) {
@@ -15,11 +15,11 @@ public record User(@Nullable UUID uuid, String username, Set<Role> roles) {
     if (!(o instanceof User user)) {
       return false;
     }
-    return Objects.equals(username, user.username);
+    return Objects.equals(name, user.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username);
+    return Objects.hash(name);
   }
 }

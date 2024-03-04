@@ -1,0 +1,150 @@
+openapi: 3.0.1
+info:
+  title: JBox Standard Security API
+  version: "@version@"
+servers:
+  - url: http://127.0.0.1:8080
+    description: local
+
+security:
+  - bearerAuth: []
+
+paths:
+  /users/{id}:
+    get:
+      tags:
+        - users
+      operationId: getUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "./components_common.yaml#/components/schemas/Uuid"
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+
+  /users/name/{name}:
+    get:
+      tags:
+        - users
+      operationId: getUserByName
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+
+  /roles/{id}:
+    get:
+      tags:
+        - roles
+      operationId: getRole
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "./components_common.yaml#/components/schemas/Uuid"
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/Role"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+
+  /permissions/{id}:
+    get:
+      tags:
+        - permissions
+      operationId: getPermission
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "./components_common.yaml#/components/schemas/Uuid"
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/Permission"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "./components_security.yaml#/components/securitySchemes/bearerAuth"
+
+  schemas:
+    User:
+      type: object
+      properties:
+        uuid:
+          $ref: "./components_common.yaml#/components/schemas/Uuid"
+        name:
+          type: string
+
+    Role:
+      type: object
+      properties:
+        uuid:
+          $ref: "./components_common.yaml#/components/schemas/Uuid"
+        name:
+          type: string
+
+    Permission:
+      type: object
+      properties:
+        uuid:
+          $ref: "./components_common.yaml#/components/schemas/Uuid"
+        name:
+          type: string
+

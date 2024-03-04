@@ -42,9 +42,25 @@ tasks.register("generateApi", GenerateTask::class.java) {
     configOptions.putAll(generatorConfig)
 }
 
+tasks.register("generateSecurityApi", GenerateTask::class.java) {
+    description = "Generate Api code"
+    group = JavaBasePlugin.BUILD_TASK_NAME
+
+    generatorName.set("spring")
+    library.set("spring-boot")
+    inputSpec.set("$projectDir/src/main/resources/security_api.yaml")
+    //templateDir.set("$projectDir/src/main/resources/templates")
+    outputDir.set("$buildDir/generated")
+    modelNameSuffix.set("Resource")
+    globalProperties.put("skipFormModel", "false")
+    openapiNormalizer.put("REMOVE_ANYOF_ONEOF_AND_KEEP_PROPERTIES_ONLY", "true")
+    configOptions.putAll(generatorConfig)
+}
+
 tasks.withType<JavaCompile> {
     dependsOn(
         tasks.findByName("generateApi"),
+        tasks.findByName("generateSecurityApi"),
     )
     sourceSets.main {
         java.srcDirs(

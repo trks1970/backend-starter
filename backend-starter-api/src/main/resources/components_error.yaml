@@ -1,7 +1,7 @@
 openapi: "3.1.0"
 info:
   title: JBox Standard Rest Error
-  version: "2.0-20240219"
+  version: "@version@"
 
 components:
   responses:
