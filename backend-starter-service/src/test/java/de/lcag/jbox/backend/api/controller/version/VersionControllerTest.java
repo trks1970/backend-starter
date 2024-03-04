@@ -1,4 +1,4 @@
-package de.lcag.jbox.backend.api.controller;
+package de.lcag.jbox.backend.api.controller.version;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

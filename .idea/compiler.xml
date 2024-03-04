@@ -4,10 +4,15 @@
     <annotationProcessing>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="spring" />
+        <option name="mapstruct.defaultInjectionStrategy" value="constructor" />
+        <option name="mapstruct.unmappedSourcePolicy" value="ERROR" />
+        <option name="mapstruct.unmappedTargetPolicy" value="ERROR" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.orm/hibernate-jpamodelgen/6.4.4.Final/7fd6e2c75fb71d071ed43597c9467237599ea482/hibernate-jpamodelgen-6.4.4.Final.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct/1.5.5.Final/2ca3cbe39b6e9ea8d5ea521965a89bef2a1e8eeb/mapstruct-1.5.5.Final.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.5.Final/897f6f115930b936287bef552bf5fe28cc64717d/mapstruct-processor-1.5.5.Final.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate.orm/hibernate-core/6.4.4.Final/5c9decb3c5a70bf7801d41fc32633416c26be069/hibernate-core-6.4.4.Final.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/jaxb-runtime/4.0.2/e4e4e0c5b0d42054d00dc4023901572a60d368c7/jaxb-runtime-4.0.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/jaxb-core/4.0.2/8c29249f6c10f4ee08967783831580b0f5c5360/jaxb-core-4.0.2.jar" />

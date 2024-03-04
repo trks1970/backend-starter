@@ -5,6 +5,9 @@
 jdkVersion = "21"
 
 # IMPLEMENTATION
+# see: https://hibernate.atlassian.net/browse/HHH-17612
+# see: https://discourse.hibernate.org/t/defaultrevisionentity-java-lang-illegalargumentexception-can-not-set-static-jakarta-persistence-metamodel-mappedsuperclasstype-field-org-hibernate-envers-defaultrevisionentity-class-to-org-hibernate-metamodel-model-domain-internal-entitytypeimpl/8851/5
+hibernateDowngrade = "6.2.22.Final"
 jackson = "2.16.1"
 jacksonJsonNullable = "0.2.4"
 jsr305 = "3.0.2"
@@ -19,6 +22,7 @@ springDoc = "2.2.0"
 jpaModelGen = "6.4.4.Final"
 lombok = "1.18.30"
 mapstruct = "1.5.5.Final"
+mapstructLombokBinding = "0.2.0"
 
 
 # TEST
@@ -42,6 +46,10 @@ versions = "0.45.0"
 
 [libraries]
 # IMPLEMENTATION
+# see: https://hibernate.atlassian.net/browse/HHH-17612
+hibernateCoreDowngrade = { module = "org.hibernate.orm:hibernate-core", version.ref="hibernateDowngrade"}
+hibernateEnversDowngrade = { module = "org.hibernate.orm:hibernate-envers", version.ref="hibernateDowngrade"}
+
 
 jacksonDatatype = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref="jackson"}
 jacksonJsonNullable = { module = "org.openapitools:jackson-databind-nullable", version.ref="jacksonJsonNullable"}
@@ -68,6 +76,8 @@ springBootWeb = { module = "org.springframework.boot:spring-boot-starter-web", v
 jpaModelGen = {module="org.hibernate.orm:hibernate-jpamodelgen", version.ref="jpaModelGen"}
 lombok = { module = "org.projectlombok:lombok", version.ref="lombok" }
 mapstruct = {module="org.mapstruct:mapstruct", version.ref="mapstruct"}
+mapstructProcessor = {module="org.mapstruct:mapstruct-processor", version.ref="mapstruct"}
+mapstructLombokBinding = {module="org.projectlombok:lombok-mapstruct-binding", version.ref="mapstructLombokBinding"}
 
 # TEST
 archUnit = { module = "com.tngtech.archunit:archunit-junit5", version.ref = "archUnit" }
@@ -90,11 +100,12 @@ sonar-gradle = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugi
 databaseBundle = ["postgres", "liquibase"]
 springApiBundle = [ "jacksonDatatype", "jacksonJsonNullable", "jsr305","springBootWeb", "springBootValidation", "springDoc"]
 springSecurityBundle = ["springBootOauth2ResourceServer", "springBootSecurity", "springOAuth2Client"]
-springServiceBundle = ["springBootActuator", "springBootDataJpa", "springDataEnvers"]
+springServiceBundle = ["springBootActuator", "springBootDataJpa"]
+springDataEnvers =  ["springDataEnvers"]
 springTelemetryBundle = ["logBook","microMeterPrometheus","microMeterTracing","microMeterTracingOtel"]
 
 # ANNOTATION PROCESSORS
-annotationProcessorBundle = ["lombok", "jpaModelGen", "mapstruct"]
+annotationProcessorBundle = ["jpaModelGen", "mapstructLombokBinding", "mapstructProcessor", "lombok"]
 
 # TEST
 testBundle = ["archUnit", "assertJ", "springBootTest"]

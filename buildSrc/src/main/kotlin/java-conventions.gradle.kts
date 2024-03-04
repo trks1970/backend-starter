@@ -64,7 +64,6 @@ tasks.compileJava {
     options.encoding = "UTF-8"
 }
 
-
 tasks.withType<Test> {
     testLogging.showStandardStreams = true
     useJUnitPlatform()

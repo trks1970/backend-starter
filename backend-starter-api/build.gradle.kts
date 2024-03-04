@@ -42,7 +42,6 @@ tasks.register("generateApi", GenerateTask::class.java) {
     configOptions.putAll(generatorConfig)
 }
 
-
 tasks.withType<JavaCompile> {
     dependsOn(
         tasks.findByName("generateApi"),
@@ -50,11 +49,10 @@ tasks.withType<JavaCompile> {
     sourceSets.main {
         java.srcDirs(
             "$projectDir/src/main/java",
-            "$buildDir/generated/src/main/java",
+            "${layout.buildDirectory.get()}/generated/src/main/java",
         )
     }
 }
-
 
 dependencies {
     implementation(libs.bundles.springApiBundle)
