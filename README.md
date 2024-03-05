@@ -1,9 +1,14 @@
 # Introduction
 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this
-project.
+This is the starter monorepo for JBox Standard projects.
+To start a new project, pull it from the Azure repo and the push it to a new origin.
+
+`insert git command here`
+
 
 # Getting Started
+
+## Structure
 
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 
@@ -27,3 +32,6 @@ can also seek inspiration from the below readme files:
 - [ASP.NET Core](https://github.com/aspnet/Home)
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+# Roadmap:
+- allow single page result (all results in one response)

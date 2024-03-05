@@ -38,7 +38,7 @@ tasks.register("generateApi", GenerateTask::class.java) {
     outputDir.set("$buildDir/generated")
     modelNameSuffix.set("Resource")
     globalProperties.put("skipFormModel", "false")
-    openapiNormalizer.put("REMOVE_ANYOF_ONEOF_AND_KEEP_PROPERTIES_ONLY", "true")
+    // openapiNormalizer.put("REMOVE_ANYOF_ONEOF_AND_KEEP_PROPERTIES_ONLY", "true")
     configOptions.putAll(generatorConfig)
 }
 
@@ -48,12 +48,12 @@ tasks.register("generateSecurityApi", GenerateTask::class.java) {
 
     generatorName.set("spring")
     library.set("spring-boot")
-    inputSpec.set("$projectDir/src/main/resources/security_api.yaml")
+    inputSpec.set("$projectDir/src/main/resources/api_security.yaml")
     //templateDir.set("$projectDir/src/main/resources/templates")
     outputDir.set("$buildDir/generated")
     modelNameSuffix.set("Resource")
     globalProperties.put("skipFormModel", "false")
-    openapiNormalizer.put("REMOVE_ANYOF_ONEOF_AND_KEEP_PROPERTIES_ONLY", "true")
+    // openapiNormalizer.put("REMOVE_ANYOF_ONEOF_AND_KEEP_PROPERTIES_ONLY", "true")
     configOptions.putAll(generatorConfig)
 }
 
