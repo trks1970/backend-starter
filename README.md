@@ -1,4 +1,24 @@
-# Introduction
+# Vision
+To provide a framework/starter template for JBox Applications
+Key features:
+- Angular/PrimeNG Frontend
+- SpringBoot Java (kotlin) Backend
+- gradle build
+- modular (builds monolith but quickly extracted to microservices)
+- monorepo
+- pipeline integration (docker container pushed to registry)
+- onion architecture
+- cqrs
+- most RDBMS Systems supported out of the box (MySQL, Postgres, MSSQL, Oracle etc)
+- Azure AD auth via appreg
+- Modular OpenApi (generated)
+- User/Role/Permission
+- Sherlog/Azure app insights integration (terraform)
+- Actuator prometheus monitoring
+- Tracing
+- versioning
+- coding style and check
+- test coverage
 
 This is the starter monorepo for JBox Standard projects.
 To start a new project, pull it from the Azure repo and the push it to a new origin.
@@ -7,6 +27,23 @@ To start a new project, pull it from the Azure repo and the push it to a new ori
 
 
 # Getting Started
+
+Monorepo
+
+onion
+cqrs
+
+gradle buildsrc
+
+Bounty
+accept other than String if Filter.fieldValue
+PrimeNG LH design
+
+JBox Standard App Demo
+- AD Authentication
+- MySQL
+- SherLog/Azure
+- Basic Monitoring
 
 ## Structure
 

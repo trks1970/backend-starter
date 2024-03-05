@@ -37,6 +37,31 @@ paths:
         '500':
           $ref: "./components_error.yaml#/components/responses/ErrorResponse"
 
+    put:
+      tags:
+        - users
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
 
   /users/filter:
     post:
@@ -85,6 +110,27 @@ paths:
             'application/json':
               schema:
                 $ref: "#/components/schemas/User"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+    delete:
+      tags:
+        - users
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: "./components_common.yaml#/components/schemas/Uuid"
+      responses:
+        '204':
+          description: No Content
         '400':
           $ref: "./components_error.yaml#/components/responses/ErrorResponse"
         '401':

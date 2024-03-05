@@ -21,6 +21,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/backend-starter-api" />
+            <option value="$PROJECT_DIR$/backend-starter-module-common" />
             <option value="$PROJECT_DIR$/backend-starter-service" />
             <option value="$PROJECT_DIR$/buildSrc" />
           </set>

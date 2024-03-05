@@ -1,5 +1,6 @@
 
 pluginManagement {
+    includeBuild("../buildSrc")
     repositories {
         gradlePluginPortal()
         google()
@@ -15,7 +16,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "backend-starter"
-includeBuild("backend-starter-module-common")
-include("backend-starter-api")
-include("backend-starter-service")
+rootProject.name = "backend-starter-module-common"
+
+include("service")
+

@@ -32,7 +32,26 @@ public class UsersController implements UsersApi {
   @Override
   public ResponseEntity<UserResource> createUser(UserResource userResource) {
     return ResponseEntity.ok(
-        userMapper.toResource(userCommandService.upsert(userMapper.toDomain(userResource))));
+        userMapper.toResource(userCommandService.create(userMapper.toDomain(userResource))));
+  }
+  @Override
+  public ResponseEntity<UserResource> getUser(UUID id) {
+    return ResponseEntity.ok(
+        userMapper.toResource(
+        userQueryService.findBy(id)
+        )
+    );
+  }
+
+  @Override
+  public ResponseEntity<UserResource> updateUser(UserResource userResource) {
+    return ResponseEntity.ok(
+        userMapper.toResource(userCommandService.update(userMapper.toDomain(userResource))));
+  }
+
+  @Override
+  public ResponseEntity<Void> deleteUser(UUID id) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
@@ -45,16 +64,12 @@ public class UsersController implements UsersApi {
 
   @Override
   public ResponseEntity<List<PaginatedUsersResource>> getPermissionsOfUser(UUID id) {
-    return null;
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public ResponseEntity<List<PaginatedRolesResource>> getRolesOfUser(UUID id) {
-    return null;
-  }
-
-  @Override
-  public ResponseEntity<UserResource> getUser(UUID id) {
     throw new UnsupportedOperationException();
   }
+
 }
