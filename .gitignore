@@ -5,3 +5,11 @@
 /backend-starter-service/build/
 /.gradle/
 /backend-starter-service/create.sql
+/backend-module-base/api/build/
+/backend-module-base/.gradle/
+/backend-module-base/service/build/
+/backend-module-version/.gradle/
+/backend-module-version/api/build/
+/build-logic/.gradle/
+/build-logic/build/
+/backend-module-version/build/

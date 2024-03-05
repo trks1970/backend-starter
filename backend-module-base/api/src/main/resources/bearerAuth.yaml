@@ -1,0 +1,11 @@
+openapi: "3.1.0"
+info:
+  title: JBox Standard Security Components
+  version: "$version@"
+
+components:
+  securitySchemes:
+    bearerAuth: # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2

@@ -7,9 +7,23 @@
         <compositeConfiguration>
           <compositeBuild compositeDefinitionSource="SCRIPT">
             <builds>
-              <build path="$PROJECT_DIR$/buildSrc" name="buildSrc">
+              <build path="$PROJECT_DIR$/backend-module-base" name="backend-module-base">
                 <projects>
-                  <project path="$PROJECT_DIR$/buildSrc" />
+                  <project path="$PROJECT_DIR$/backend-module-base" />
+                  <project path="$PROJECT_DIR$/backend-module-base/api" />
+                  <project path="$PROJECT_DIR$/backend-module-base/service" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/backend-module-version" name="backend-module-version">
+                <projects>
+                  <project path="$PROJECT_DIR$/backend-module-version" />
+                  <project path="$PROJECT_DIR$/backend-module-version/api" />
+                  <project path="$PROJECT_DIR$/backend-module-version/service" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/build-logic" />
                 </projects>
               </build>
             </builds>
@@ -20,10 +34,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/backend-starter-api" />
-            <option value="$PROJECT_DIR$/backend-starter-module-common" />
-            <option value="$PROJECT_DIR$/backend-starter-service" />
-            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/backend-module-base" />
+            <option value="$PROJECT_DIR$/backend-module-base/api" />
+            <option value="$PROJECT_DIR$/backend-module-base/service" />
+            <option value="$PROJECT_DIR$/backend-module-version" />
+            <option value="$PROJECT_DIR$/backend-module-version/api" />
+            <option value="$PROJECT_DIR$/backend-module-version/service" />
+            <option value="$PROJECT_DIR$/build-logic" />
           </set>
         </option>
       </GradleProjectSettings>

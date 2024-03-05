@@ -8,6 +8,11 @@ pluginManagement {
 }
 @Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
@@ -15,9 +20,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "backend-starter"
-includeBuild("build-logic")
-includeBuild("backend-module-base")
-includeBuild("backend-module-version")
-// include("backend-starter-api")
-// include("backend-starter-service")
+rootProject.name = "backend-module-base"
+includeBuild("../build-logic")
+include("api")
+include("service")
+

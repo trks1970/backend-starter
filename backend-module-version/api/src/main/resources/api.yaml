@@ -1,0 +1,55 @@
+openapi: 3.0.1
+info:
+  title: JBox Standard Version API
+  version: "@version@"
+servers:
+  - url: http://127.0.0.1:8080
+
+security:
+  - bearerAuth: []
+
+paths:
+  /version:
+    get:
+      tags:
+        - version
+      operationId: getVersion
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/Version"
+        '400':
+          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: "../../../../../backend-module-common/api/bearerAuth.yaml#/components/securitySchemes/bearerAuth"
+
+  schemas:
+    Version:
+      type: object
+      properties:
+        major:
+          type: integer
+          format: int32
+        minor:
+          type: integer
+          format: int32
+        patch:
+            type: integer
+            format: int32
+        build:
+            type: string
+
+
+

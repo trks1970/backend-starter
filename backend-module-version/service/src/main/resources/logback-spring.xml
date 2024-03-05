@@ -1,0 +1,40 @@
+
+<configuration>
+    <timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date - %-5level - [%thread], [%X{traceId:-NONE},%X{spanId:-NONE}] %c{2} - %message%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>./log/mapping-service-${byDay}.log </file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date - %-5level - [%thread], [%X{traceId:-NONE}, %X{spanId:-NONE}] %c{2} - %message%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>TRACE</level>
+        </filter>
+    </appender>
+
+    <springProfile name="default, local, docker">
+        <root level="WARN">
+            <appender-ref ref="CONSOLE" />
+            <appender-ref ref="FILE" />
+        </root>
+        <logger name="de.lcag.jbox.backend" level="DEBUG"/>
+        <logger name="org.zalando.logbook" level="TRACE"/>
+        <logger name="liquibase" level="INFO"/>
+        <!--
+            <logger name="org.hibernate.SQL" level="TRACE" />
+            <logger name="org.hibernate.orm.jdbc.bind" level="TRACE" />
+        -->
+    </springProfile>
+</configuration>
+
+

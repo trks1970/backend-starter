@@ -1,0 +1,18 @@
+openapi: "3.1.0"
+info:
+  title: JBox Standard Security Components
+  version: "$version@"
+
+components:
+  schemas:
+
+    Uuid:
+      type: string
+      format: uuid
+      pattern: '^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$'
+
+    DateTime:
+      description: datetime should always be delivered as epoch millisecond (aka java Instant)
+      type: integer
+      format: int64
+

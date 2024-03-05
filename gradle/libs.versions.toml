@@ -90,11 +90,6 @@ springBootTest = { module = "org.springframework.boot:spring-boot-starter-test",
 springSecurityTest = { module="org.springframework.security:spring-security-test", version=""}
 testContainers = {module="org.testcontainers:junit-jupiter", version.ref="testContainers"}
 
-# buildSrc dependencies (plugins)
-springBoot-gradle = { module = "org.springframework.boot:spring-boot-gradle-plugin", version.ref = "spring" }
-spotless-gradle = { module = "com.diffplug.spotless:spotless-plugin-gradle", version.ref = "spotless" }
-sonar-gradle = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version.ref = "sonar" }
-
 [bundles]
 # IMPLEMENTATION
 databaseBundle = ["postgres", "liquibase"]
@@ -113,10 +108,11 @@ integrationTestBundle = ["databaseRider", "h2", "mockWebServer", "springSecurity
 dockerTest = ["testContainers"]
 
 [plugins]
-
 openApiGenerator = { id = "org.openapi.generator", version.ref = "openApiGenerator"}
 jib = { id = "com.google.cloud.tools.jib", version.ref = "jib"}
 sonarqube = {id="org.sonarqube", version.ref = "sonar"}
 spotless = {id = "com.diffplug.spotless", version.ref = "spotless"}
 springBoot = { id = "org.springframework.boot", version.ref = "spring"}
 versions = { id = "com.github.ben-manes.versions", version.ref = "versions" }
+
+# buildSrc dependencies (plugins)

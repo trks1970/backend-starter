@@ -33,9 +33,19 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.jaxb/txw2/4.0.2/24e167be69c29ebb7ee0a3b1f9b546f1dfd111fc/txw2-4.0.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.istack/istack-commons-runtime/4.1.1/9b3769c76235bc283b060da4fae2318c6d53f07e/istack-commons-runtime-4.1.1.jar" />
         </processorPath>
-        <module name="backend-starter.backend-starter-service.main" />
+        <module name="backend-module-base.service.main" />
+        <module name="backend-module-version.service.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="21" />
+    <bytecodeTargetLevel target="1.6">
+      <module name="backend-module-common.service" target="21" />
+      <module name="backend-module-common.service.main" target="21" />
+      <module name="backend-module-common.service.test" target="21" />
+      <module name="backend-starter-module-common.service" target="21" />
+      <module name="backend-starter-module-common.service.main" target="21" />
+      <module name="backend-starter-module-common.service.test" target="21" />
+      <module name="service.backend-starter-module-common.service.main" target="21" />
+      <module name="service.backend-starter-module-common.service.test" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>
