@@ -5,16 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.envers.Audited;
 
 @Entity
-@Table(
-    name = "system_user_role",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role_id"}))
+@Table(name = "system_user_role")
 @Audited
 @Getter
 @Setter

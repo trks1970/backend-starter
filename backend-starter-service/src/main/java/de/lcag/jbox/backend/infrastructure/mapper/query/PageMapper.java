@@ -16,10 +16,10 @@ public class PageMapper<E, D> {
         page.isLast(),
         page.getNumberOfElements(),
         page.isEmpty(),
-        page.getContent().stream().map(pageContentMapper::toDomain).toList());
+        page.getContent().stream().map(pageContentMapper::toPageContent).toList());
   }
 
   public interface PageContentMapper<E, D> {
-    D toDomain(E entity);
+    D toPageContent(E entity);
   }
 }

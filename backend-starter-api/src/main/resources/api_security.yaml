@@ -10,6 +10,34 @@ security:
   - bearerAuth: []
 
 paths:
+  /users:
+    post:
+      tags:
+        - users
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        '200':
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '401':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '403':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+        '500':
+          $ref: "./components_error.yaml#/components/responses/ErrorResponse"
+
+
   /users/filter:
     post:
       tags:

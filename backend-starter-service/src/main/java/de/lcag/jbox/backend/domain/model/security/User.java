@@ -1,10 +1,11 @@
 package de.lcag.jbox.backend.domain.model.security;
 
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 import org.springframework.lang.Nullable;
 
-public record User(@Nullable UUID uuid, String name) {
+public record User(@Nullable UUID uuid, String name, Set<UUID> roles) {
 
   @Override
   public boolean equals(Object o) {

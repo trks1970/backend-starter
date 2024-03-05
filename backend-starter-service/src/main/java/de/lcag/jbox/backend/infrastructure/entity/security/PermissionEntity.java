@@ -1,8 +1,11 @@
 package de.lcag.jbox.backend.infrastructure.entity.security;
 
+import de.lcag.jbox.backend.domain.model.security.Permissions;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,8 +35,8 @@ public class PermissionEntity {
   UUID uuid = null;
 
   @Column(name = "name", unique = true, nullable = false)
-  @Nullable
-  String name;
+  @Enumerated(EnumType.STRING)
+  Permissions permission;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "permission")
   Set<RolePermissionEntity> roles = new HashSet<>();

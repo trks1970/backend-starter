@@ -3,10 +3,12 @@ package de.lcag.jbox.backend.api.controller.security;
 import de.lcag.jbox.backend.api.UsersApi;
 import de.lcag.jbox.backend.api.mapper.security.PaginatedUsersMapper;
 import de.lcag.jbox.backend.api.mapper.security.PagingFilterMapper;
+import de.lcag.jbox.backend.api.mapper.security.UserMapper;
 import de.lcag.jbox.backend.api.resource.PaginatedRolesResource;
 import de.lcag.jbox.backend.api.resource.PaginatedUsersResource;
 import de.lcag.jbox.backend.api.resource.PagingFilterResource;
 import de.lcag.jbox.backend.api.resource.UserResource;
+import de.lcag.jbox.backend.domain.service.security.command.UserCommandService;
 import de.lcag.jbox.backend.domain.service.security.query.UserQueryService;
 import java.util.List;
 import java.util.UUID;
@@ -21,9 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("${api.base-path:}")
 @Slf4j
 public class UsersController implements UsersApi {
+  private final UserMapper userMapper;
   private final PagingFilterMapper pagingFilterMapper;
   private final PaginatedUsersMapper paginatedUsersMapper;
   private final UserQueryService userQueryService;
+  private final UserCommandService userCommandService;
+
+  @Override
+  public ResponseEntity<UserResource> createUser(UserResource userResource) {
+    return ResponseEntity.ok(
+        userMapper.toResource(userCommandService.upsert(userMapper.toDomain(userResource))));
+  }
 
   @Override
   public ResponseEntity<PaginatedUsersResource> filterUsers(

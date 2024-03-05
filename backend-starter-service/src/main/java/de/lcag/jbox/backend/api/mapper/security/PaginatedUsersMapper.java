@@ -5,7 +5,7 @@ import de.lcag.jbox.backend.domain.model.query.Pagination;
 import de.lcag.jbox.backend.domain.model.security.User;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(uses = {UserMapper.class})
 public interface PaginatedUsersMapper {
   PaginatedUsersResource toResource(Pagination<User> userPagination);
 }

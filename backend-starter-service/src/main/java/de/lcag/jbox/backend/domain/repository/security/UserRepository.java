@@ -7,4 +7,6 @@ import de.lcag.jbox.backend.domain.model.security.User;
 public interface UserRepository {
 
   Pagination<User> filterBy(PagingFilter filter);
+
+  User upsert(User user);
 }
