@@ -21,6 +21,12 @@
                   <project path="$PROJECT_DIR$/backend-module-version/service" />
                 </projects>
               </build>
+              <build path="$PROJECT_DIR$/backend-support-test" name="backend-support-test">
+                <projects>
+                  <project path="$PROJECT_DIR$/backend-support-test" />
+                  <project path="$PROJECT_DIR$/backend-support-test/service" />
+                </projects>
+              </build>
               <build path="$PROJECT_DIR$/build-logic" name="build-logic">
                 <projects>
                   <project path="$PROJECT_DIR$/build-logic" />
@@ -40,6 +46,8 @@
             <option value="$PROJECT_DIR$/backend-module-version" />
             <option value="$PROJECT_DIR$/backend-module-version/api" />
             <option value="$PROJECT_DIR$/backend-module-version/service" />
+            <option value="$PROJECT_DIR$/backend-support-test" />
+            <option value="$PROJECT_DIR$/backend-support-test/service" />
             <option value="$PROJECT_DIR$/build-logic" />
           </set>
         </option>

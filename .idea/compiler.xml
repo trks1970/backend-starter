@@ -34,6 +34,19 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.sun.istack/istack-commons-runtime/4.1.1/9b3769c76235bc283b060da4fae2318c6d53f07e/istack-commons-runtime-4.1.1.jar" />
         </processorPath>
         <module name="backend-module-base.service.main" />
+        <module name="backend-support-test.service.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <option name="mapstruct.defaultComponentModel" value="spring" />
+        <option name="mapstruct.defaultInjectionStrategy" value="constructor" />
+        <option name="mapstruct.unmappedSourcePolicy" value="ERROR" />
+        <option name="mapstruct.unmappedTargetPolicy" value="ERROR" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.30/f195ee86e6c896ea47a1d39defbe20eb59cd149d/lombok-1.18.30.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok-mapstruct-binding/0.2.0/2f1cf9ced7b720ba4996c942b816669e63f0fa4f/lombok-mapstruct-binding-0.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mapstruct/mapstruct-processor/1.5.5.Final/897f6f115930b936287bef552bf5fe28cc64717d/mapstruct-processor-1.5.5.Final.jar" />
+        </processorPath>
         <module name="backend-module-version.service.main" />
       </profile>
     </annotationProcessing>
@@ -44,6 +57,8 @@
       <module name="backend-starter-module-common.service" target="21" />
       <module name="backend-starter-module-common.service.main" target="21" />
       <module name="backend-starter-module-common.service.test" target="21" />
+      <module name="backend-support-test.main" target="21" />
+      <module name="backend-support-test.test" target="21" />
       <module name="service.backend-starter-module-common.service.main" target="21" />
       <module name="service.backend-starter-module-common.service.test" target="21" />
     </bytecodeTargetLevel>

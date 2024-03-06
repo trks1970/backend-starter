@@ -22,6 +22,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "backend-module-version"
 includeBuild("../build-logic")
-include("api")
-include("service")
+include(":api")
+include(":service")
 

@@ -22,18 +22,18 @@ paths:
               schema:
                 $ref: "#/components/schemas/Version"
         '400':
-          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+          $ref: "../../../../../backend-module-base/api/src/main/resources/components_error.yaml#/components/responses/ErrorResponse"
         '401':
-          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+          $ref: "../../../../../backend-module-base/api/src/main/resources/components_error.yaml#/components/responses/ErrorResponse"
         '403':
-          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+          $ref: "../../../../../backend-module-base/api/src/main/resources/components_error.yaml#/components/responses/ErrorResponse"
         '500':
-          $ref: "../../../../../backend-module-common/api/components_error.yaml#/components/responses/ErrorResponse"
+          $ref: "../../../../../backend-module-base/api/src/main/resources/components_error.yaml#/components/responses/ErrorResponse"
 
 components:
   securitySchemes:
     bearerAuth:
-      $ref: "../../../../../backend-module-common/api/bearerAuth.yaml#/components/securitySchemes/bearerAuth"
+      $ref: "../../../../../backend-module-base/api/src/main/resources/bearerAuth.yaml#/components/securitySchemes/bearerAuth"
 
   schemas:
     Version:

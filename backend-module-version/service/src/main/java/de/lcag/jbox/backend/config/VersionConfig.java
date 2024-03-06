@@ -17,11 +17,12 @@ public class VersionConfig implements InitializingBean {
   @Value("${spring.application.name}")
   private String applicationName;
 
-  @Value("${spring.application.version}")
+  @Value("${spring.application.version:}")
   private String applicationVersion;
 
   @Bean
   public Version version() {
+    System.out.println(applicationVersion);
     String[] splitVersion = applicationVersion.split("-");
     String[] semVer = splitVersion[0].split("\\.");
     return new Version(

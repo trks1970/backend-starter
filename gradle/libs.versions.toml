@@ -2,6 +2,7 @@
 # see: https://youtrack.jetbrains.com/issue/IDEA-316453/Gradle-version-catalog-wrong-unused-warnings
 
 [versions]
+backendVersion = "0.0.0"
 jdkVersion = "21"
 
 # IMPLEMENTATION

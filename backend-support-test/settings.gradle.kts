@@ -20,8 +20,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "backend-module-version"
+rootProject.name = "backend-support-test"
 includeBuild("../build-logic")
-include(":api")
 include(":service")
 

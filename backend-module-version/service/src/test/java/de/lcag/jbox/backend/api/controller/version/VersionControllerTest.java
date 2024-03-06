@@ -5,7 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import de.lcag.jbox.backend.BackendApplication;
+import de.lcag.jbox.backend.testsupport.ModuleTestApplication;
 import de.lcag.jbox.backend.testsupport.DropCreateJpaTestConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @ActiveProfiles("test")
 @AutoConfigureMockMvc(addFilters = false)
 @SpringBootTest(
-    classes = {BackendApplication.class, DropCreateJpaTestConfig.class},
+    classes = {ModuleTestApplication.class, DropCreateJpaTestConfig.class},
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableAutoConfiguration(exclude = {LiquibaseAutoConfiguration.class})
 public class VersionControllerTest {

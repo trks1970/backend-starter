@@ -21,16 +21,18 @@ dependencies {
 
     api(project(":api"))
     implementation(libs.bundles.springApiBundle)
-    implementation(libs.bundles.springServiceBundle)
-    implementation(libs.bundles.springSecurityBundle)
-    implementation(libs.bundles.springTelemetryBundle)
-    implementation(libs.bundles.databaseBundle)
+
+    implementation(libs.mapstruct)
     compileOnly(libs.lombok)
 
-    annotationProcessor(libs.bundles.annotationProcessorBundle)
+    annotationProcessor(libs.lombok)
+    annotationProcessor(libs.mapstructLombokBinding)
+    annotationProcessor(libs.mapstructProcessor)
 
     testImplementation(libs.bundles.testBundle)
     testImplementation(libs.bundles.integrationTestBundle)
+    testImplementation(libs.springBootDataJpa)
+    testCompileOnly(libs.lombok)
 
 }
 

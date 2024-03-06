@@ -1,4 +1,4 @@
-package backend.testsupport;
+package de.lcag.jbox.backend.testsupport;
 
 public class DropCreateJpaTestConfig extends H2DataSource {
 

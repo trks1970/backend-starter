@@ -1,4 +1,4 @@
-package backend.testsupport;
+package de.lcag.jbox.backend.testsupport;
 
 public class ValidateJpaTestConfig extends H2DataSource {
 

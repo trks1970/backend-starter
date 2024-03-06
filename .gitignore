@@ -13,3 +13,4 @@
 /build-logic/.gradle/
 /build-logic/build/
 /backend-module-version/build/
+/backend-module-version/service/build/

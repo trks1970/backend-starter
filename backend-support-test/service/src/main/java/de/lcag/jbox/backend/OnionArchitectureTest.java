@@ -1,4 +1,4 @@
-package backend;
+package de.lcag.jbox.backend;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;

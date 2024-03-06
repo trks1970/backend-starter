@@ -1,4 +1,4 @@
-package backend.testsupport;
+package de.lcag.jbox.backend.testsupport;
 
 import jakarta.persistence.EntityManagerFactory;
 import java.util.Properties;

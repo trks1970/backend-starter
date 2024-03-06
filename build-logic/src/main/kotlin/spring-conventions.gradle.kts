@@ -1,10 +1,11 @@
-import gradle.kotlin.dsl.accessors._676745f8266ee1a204c7834e1b804b56.compileJava
-import gradle.kotlin.dsl.accessors._676745f8266ee1a204c7834e1b804b56.main
-import gradle.kotlin.dsl.accessors._676745f8266ee1a204c7834e1b804b56.sourceSets
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
-project.version = "${project.properties["version"]}-${System.getenv()["COMMIT_SLUG"] ?: "local"}"
+val libs: VersionCatalog = extensions.getByType<VersionCatalogsExtension>().named("libs")
+// if you swap these lines, you can do module-wise versioning
+// by defining version in the gradle.properties file of each module
+// project.version = "${project.properties["version"]}-${System.getenv()["COMMIT_SLUG"] ?: "local"}"
+project.version = "${libs.findVersion("backendVersion").get()}-${System.getenv()["COMMIT_SLUG"] ?: "local"}"
 
 plugins {
     id("java-conventions")

@@ -22,11 +22,12 @@ dependencies {
     api(project(":backend-starter-api"))
     implementation(libs.bundles.springApiBundle)
 
-    // see: https://hibernate.atlassian.net/browse/HHH-17612
+    // >>> see: https://hibernate.atlassian.net/browse/HHH-17612
     implementation(libs.bundles.springDataEnvers) {
         exclude("org.hibernate.orm","hibernate-envers")
     }
     implementation(libs.hibernateEnversDowngrade)
+    // <<<
 
     implementation(libs.bundles.springServiceBundle)
     implementation(libs.bundles.springSecurityBundle)
