@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: backend
+    version: @version@
+  main:
+    lazy-initialization: false

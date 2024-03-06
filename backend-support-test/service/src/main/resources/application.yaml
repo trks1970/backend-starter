@@ -1,0 +1,43 @@
+server:
+  port: ${SERVER_PORT:8080}
+  max-http-request-header-size: ${SERVER_MAX_HEADER_SIZE:12KB}
+
+spring:
+  application:
+    name: backend
+    version: @version@
+  main:
+    lazy-initialization: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_BASE_URL}:${POSTGRES_PORT}/${POSTGRES_DB}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:admin123}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+  liquibase:
+    enabled: false
+    change-log: /db/liquibase/changelog.yaml
+  jpa:
+    open-in-view: false
+    properties:
+      '[jakarta.persistence.schema-generation.database.action]': validate # possible values of: none, create, drop, drop-and-create
+      '[jakarta.persistence.schema-generation.scripts.action]': create # possible values of: none, create, drop, drop-and-create
+      '[jakarta.persistence.schema-generation.scripts.create-target]': create.sql
+      '[jakarta.persistence.schema-generation.scripts.drop-target]': drop.sql
+      org:
+        hibernate:
+          envers:
+            store_data_at_delete: true
+            global_with_modified_flag: true
+            do_not_audit_optimistic_locking_field: true
+      hibernate:
+        integration:
+          envers:
+            enabled: true
+
+management:
+  server.port: ${ACTUATOR_PORT:8081}
+  endpoints.web.exposure.include: health,prometheus,openapi,swagger-ui,info
